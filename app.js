@@ -91,8 +91,7 @@ app.get('/auth/soundcloud/callback',
   });
 }*/
 app.get('/' ,function(req,res,next){
-  var string = String(process.env.SOUNDCLOUD_CLIENT_ID);
-  res.render('soundmeow',{user:req.user, trackNumber:crystal, clientID:string});
+  res.render('soundmeow',{user:req.user, trackNumber:crystal, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
 });
 // production error handler
 // no stacktraces leaked to user
