@@ -11,8 +11,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 passport.use(new SoundCloudStrategy({
-    clientID: process.env.SOUNDCLOUD_CLIENT_ID,
-    clientSecret: process.env.SOUNDCLOUD_CLIENT_SECRET,
+    clientID: 'bdada4ec105a7128a8b5f8789074517f',
+    clientSecret: 'eaf3aeffd63dd5b95af5d2aa78495a66',
     callbackURL: "http://soundmeow.herokuapp.com/auth/soundcloud/callback"
   },
   function(accessToken, refreshToken, profile, done) {
