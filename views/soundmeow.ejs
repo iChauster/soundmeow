@@ -51,7 +51,7 @@
     });
     SC.oEmbed(trackURL, { auto_play: true }).then(function(oEmbed) {
      $( document ).ready(function() {
-      console.log('inside');
+      console.log('inside',oEmebed);
         $('.text-vertical-center').append(oEmbed);
       });
     });
