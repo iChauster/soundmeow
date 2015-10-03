@@ -16,8 +16,8 @@ var app = express();
 https://api.soundcloud.com/oauth2/token token*/
 
 passport.use(new SoundCloudStrategy({
-    clientID: process.env.SOUNDCLOUD_CLIENT_ID,
-    clientSecret: process.env.SOUNDCLOUD_CLIENT_SECRET,
+    clientID: 'bdada4ec105a7128a8b5f8789074517f',
+    clientSecret: 'eaf3aeffd63dd5b95af5d2aa78495a66',
     callbackURL: "http://soundmeow.herokuapp.com/auth/soundcloud/callback"
   },
   function(accessToken, refreshToken, profile, done) {
@@ -27,8 +27,7 @@ passport.use(new SoundCloudStrategy({
   }
 ));
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');  
 
 // uncomment after placing your favicon in /public
@@ -39,8 +38,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 /*app.use(function(req, res, next) {
@@ -56,7 +53,7 @@ app.get('/auth/soundcloud/callback',
   passport.authenticate('soundcloud', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.render('index', {user:req.user});
+    res.redirect('/');
   });
 // error handlers
 
@@ -71,8 +68,8 @@ app.get('/auth/soundcloud/callback',
     });
   });
 }*/
-app.get('/' ,function(req,res){
-  res.render('index',{user:req.user});
+app.get('/' ,function(req,res,next){
+  res.render('soundmeow',{user:req.user});
 });
 // production error handler
 // no stacktraces leaked to user
