@@ -10,11 +10,6 @@ var SoundCloudStrategy = require('passport-soundcloud').Strategy;
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
-
-/*https://soundcloud.com/connect end user auth
-https://api.soundcloud.com/oauth2/token token*/
-
 passport.use(new SoundCloudStrategy({
     clientID: process.env.SOUNDCLOUD_CLIENT_ID,
     clientSecret: process.env.SOUNDCLOUD_CLIENT_SECRET,
@@ -25,9 +20,13 @@ passport.use(new SoundCloudStrategy({
    
   }
 ));
- app.use(express.session({ secret: 'keyboard cat' }));
-  app.use(passport.initialize());
-  app.use(passport.session());
+
+var app = express();
+
+/*https://soundcloud.com/connect end user auth
+https://api.soundcloud.com/oauth2/token token*/
+
+
 // view engine setup
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');  
@@ -39,7 +38,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('morgan')('combined'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
+// Initialize Passport and restore authentication state, if any, from the
+// session.
+app.use(passport.initialize());
+app.use(passport.session());
 
 // catch 404 and forward to error handler
 /*app.use(function(req, res, next) {
