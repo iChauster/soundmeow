@@ -20,7 +20,13 @@ passport.use(new SoundCloudStrategy({
    
   }
 ));
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
 
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
 var app = express();
 
 /*https://soundcloud.com/connect end user auth
