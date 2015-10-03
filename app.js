@@ -71,7 +71,9 @@ if (app.get('env') === 'development') {
     });
   });
 }
-
+app.get('/' ,function(req,res){
+  res.render('index',{user:req.user});
+});
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
