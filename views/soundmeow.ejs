@@ -37,15 +37,17 @@
 		</header>
 	</body>
   <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+  <%if(trackNumber){%>
 
   <script>
-  if(trackNumber){
+  var clientID = <%=clientID%>;
+  var trackNumber = <%=trackNumber%>;
     SC.initialize({
       client_id:clientID
     });
     SC.stream('/tracks/' + trackNumber).then(function(player){
       player.play();
     });
-  }
   </script>
+  <%}%>
 </html>
