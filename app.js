@@ -16,12 +16,12 @@ var app = express();
 https://api.soundcloud.com/oauth2/token token*/
 
 passport.use(new SoundCloudStrategy({
-    clientID: 'bdada4ec105a7128a8b5f8789074517f',
-    clientSecret: 'eaf3aeffd63dd5b95af5d2aa78495a66',
+    clientID: process.env.SOUNDCLOUD_CLIENT_ID,
+    clientSecret: process.env.SOUNDCLOUD_CLIENT_SECRET,
     callbackURL: "http://soundmeow.herokuapp.com/auth/soundcloud/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-      return done(null, user);
+      return done(null, profile);
    
   }
 ));
