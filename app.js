@@ -21,7 +21,7 @@ passport.use(new SoundCloudStrategy({
     callbackURL: "http://soundmeow.herokuapp.com/auth/soundcloud/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-      return done(err, user);
+      return done(null, user);
    
   }
 ));
