@@ -7,6 +7,7 @@
   	  <meta name="description" content="">
   	  <meta name="author" content="">
   	  <link rel="icon" href='stylesheets/favicon.ico'>
+    <script charset="utf-8" src="//code.jquery.com/jquery.js"></script>
 
   	 <link href = 'stylesheets/soundmeow.css' rel ='stylesheet'>
     <title>soundmeow</title>
@@ -18,7 +19,7 @@
 	<body class = 'index'>
 		<header id = 'nya' class = 'header'>
 			<div id = 'soundmeow' class = 'text-vertical-center'>
-				<h1>soundmeow</h1>
+				<h1 id ='meow'>soundmeow</h1>
         <% if(!user) {%>
             <a  id = 'sourc' href="http://soundmeow.herokuapp.com/auth/soundcloud" class="btn">Sign In to Soundcloud</a>
          <%}else{%>  
