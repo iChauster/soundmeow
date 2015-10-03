@@ -1,0 +1,29 @@
+html,
+body{
+	width:100%;
+	height: 100%;
+}
+@font-face{
+	font-family: 'Kawaii';
+	src:url('kawaii.ttf') format("truetype");
+}
+body h1{
+	font-family: 'Kawaii';
+	color : white;
+}
+.header {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #FF6600;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.text-vertical-center{
+	 display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
