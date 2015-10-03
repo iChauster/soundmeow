@@ -62,7 +62,7 @@ app.get('/auth/soundcloud/callback',
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+/*if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
@@ -70,19 +70,19 @@ if (app.get('env') === 'development') {
       error: err
     });
   });
-}
+}*/
 app.get('/' ,function(req,res){
   res.render('index',{user:req.user});
 });
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+/*app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
     error: {}
   });
-});
+});*/
 app.listen(process.env.PORT || 3000, function(){
   console.log("soundmeow: port : %d in %s", this.address().port, app.settings.env);
 });
