@@ -21,9 +21,8 @@ passport.use(new SoundCloudStrategy({
     callbackURL: "http://soundmeow.herokuapp.com/auth/soundcloud/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ soundcloudId: profile.id }, function (err, user) {
       return done(err, user);
-    });
+   
   }
 ));
 // view engine setup
