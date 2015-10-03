@@ -40,7 +40,7 @@
   <%if(trackNumber){%>
 
   <script>
-  var clientID = <%=clientID%>;
+  var clientID = "'" + <%=clientID%>+"'";
   var trackNumber = <%=trackNumber%>;
     SC.initialize({
       client_id:clientID
