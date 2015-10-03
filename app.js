@@ -4,12 +4,28 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var Strategy = require('passport-soundcloud').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
+/*https://soundcloud.com/connect end user auth
+https://api.soundcloud.com/oauth2/token token*/
+
+passport.use(new SoundCloudStrategy({
+    clientID: process.env.SOUNDCLOUD_CLIENT_ID,
+    clientSecret: process.env.SOUNDCLOUD_CLIENT_SECRET,
+    callbackURL: "http://soundmeow.herokuapp.com/auth/soundcloud/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ soundcloudId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -33,6 +49,15 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+app.get('/auth/soundcloud',
+  passport.authenticate('soundcloud'));
+
+app.get('/auth/soundcloud/callback', 
+  passport.authenticate('soundcloud', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.render('index', {user:req.user});
+  });
 // error handlers
 
 // development error handler
@@ -61,3 +86,4 @@ app.listen(process.env.PORT || 3000, function(){
 });
 
 module.exports = app;
+
