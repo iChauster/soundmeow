@@ -25,6 +25,9 @@ passport.use(new SoundCloudStrategy({
    
   }
 ));
+ app.use(express.session({ secret: 'keyboard cat' }));
+  app.use(passport.initialize());
+  app.use(passport.session());
 // view engine setup
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');  
