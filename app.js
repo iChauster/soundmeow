@@ -5,17 +5,24 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var SC = require('node-soundcloud');
 var SoundCloudStrategy = require('passport-soundcloud').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var crystal = '145621758';
 passport.use(new SoundCloudStrategy({
-    clientID: 'bdada4ec105a7128a8b5f8789074517f',
-    clientSecret: 'eaf3aeffd63dd5b95af5d2aa78495a66',
+    clientID: process.env.SOUNDCLOUD_CLIENT_ID,
+    clientSecret: process.env.SOUNDCLOUD_CLIENT_SECRET,
     callbackURL: "http://soundmeow.herokuapp.com/auth/soundcloud/callback"
   },
   function(accessToken, refreshToken, profile, done) {
+    SC.init({
+      id:process.env.SOUNDCLOUD_CLIENT_ID,
+      secret:process.env.SOUNDCLOUD_CLIENT_SECRET,
+      uri:'http://soundmeow.herokuapp.com/auth/soundcloud/callback',
+      accessToken:accessToken
+    });
       return done(null, profile);
    
   }
@@ -85,7 +92,7 @@ app.get('/auth/soundcloud/callback',
 }*/
 app.get('/' ,function(req,res,next){
   console.log(req.user);
-  res.render('soundmeow',{user:req.user});
+  res.render('soundmeow',{user:req.user, trackNumber:crystal, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
 });
 // production error handler
 // no stacktraces leaked to user
