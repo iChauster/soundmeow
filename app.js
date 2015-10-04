@@ -94,6 +94,13 @@ app.get('/auth/soundcloud/callback',
 app.get('/search/query', function(req,res){
     var query = req.query['genre'];
     console.log(query);
+    SC.get('/tracks/164497989', function(err, track) {
+  if ( err ) {
+    throw err;
+  } else {
+    console.log('track retrieved:', track);
+  }
+});
    SC.get('/tracks',{genres:query},function(tracks){
        var array = [];
        for (var i = 0; i<tracks.length; i++){
