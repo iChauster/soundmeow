@@ -10,12 +10,12 @@ var SoundCloudStrategy = require('passport-soundcloud').Strategy;
 var callback = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var mow = require('soundcloud');
+//var mow = require('soundcloud');
 var crystal = '145621758';
-mow.initialize({
+/*mow.initialize({
   client_id : process.env.SOUNDCLOUD_CLIENT_ID,
   redirect_uri : callback
-});
+});*/
 passport.use(new SoundCloudStrategy({
     clientID: process.env.SOUNDCLOUD_CLIENT_ID,
     clientSecret: process.env.SOUNDCLOUD_CLIENT_SECRET,
