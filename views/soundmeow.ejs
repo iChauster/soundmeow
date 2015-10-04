@@ -41,6 +41,16 @@
   <%if(trackNumber && user){%>
 
   <script>
+    function insertParam(key, value, currentURL){
+          key = encodeURI(key);
+          value = encodeURI(value);
+          if (currentURL.indexOf('?') > -1){
+            currentURL +=  '&' + key + '=' + value;
+          }else{
+            currentURL += '?' + key + '=' + value;
+          }
+          return currentURL;
+  }
   var trackURL = 'https://soundcloud.com/porter-robinson/sets/worlds';
   var clientID = 'bdada4ec105a7128a8b5f8789074517f';
   var redirect = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
@@ -65,20 +75,9 @@
           $('#nya').attr('id','loading');
           var query = $('#music_search').val();
           console.log(query);
-          SC.get('/tracks',{genres:query}).then(function(tracks){
-              var array = [];
-              for (var i = 0; i<tracks.length; i++){
-                var track = tracks[i]
-                console.log(track);
-                array.push({id:track.id});
-              }
-              console.log(array);
-              SC.connect().then(function() {
-             SC.post('/playlists', {
-                 playlist: { title: query + 'Playlist', tracks: tracks }
-             });
-            });
-          });
+          var lo = insertParam('genre', query, 'search/query');
+          window.location.href = 'http://soundmeow.herokuapp.com/' + lo;
+         
         });
       });
     });

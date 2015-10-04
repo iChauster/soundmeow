@@ -90,6 +90,25 @@ app.get('/auth/soundcloud/callback',
     });
   });
 }*/
+app.get('/search/query', function(req,res){
+    var query = req.query['genre'];
+   SC.get('/tracks',{genres:query}).then(function(tracks){
+       var array = [];
+       for (var i = 0; i<tracks.length; i++){
+          var track = tracks[i]
+          console.log(track);
+          array.push({id:track.id});
+        }
+        console.log(array);
+        SC.connect().then(function() {
+          SC.post('/playlists', {
+              playlist: { title: query + 'Playlist', tracks: tracks }
+          });
+        });
+     });
+   //should return to home page with the id of the playlist. 
+  res.redirect('/');
+});
 app.get('/' ,function(req,res,next){
   res.render('soundmeow',{user:req.user, trackNumber:crystal, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
 });
