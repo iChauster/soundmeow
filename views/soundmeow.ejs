@@ -25,7 +25,7 @@
          <%}else{%>  
          <div class ='col-md-4'></div>
 				 <div class="col-md-4" id = 'mid'>
-   					 <div class="input-group">
+   					 <div class="input-group" id = 'origin'>
    					   <input type="text" id ='music_search' class="form-control" placeholder="What do you want to hear?">
     				  <span class="input-group-btn">
     				    <button class="btn btn-default" type="button">Playlist</button>
@@ -33,7 +33,6 @@
     				</div><!-- /input-group -->
   				</div><!-- /.col-lg-6 -->
           <div class='col-md-4'></div>
-          <div class='row' id = 'playlist'></div>
   	      <% } %>
 			</div><!-- /.row -->
 		</header>
@@ -55,7 +54,7 @@
       console.log(oEmbed);
      $(document).ready(function() {
       console.log('inside',oEmbed);
-        $('#playlist').append(oEmbed.html);
+        $('#mid').append(oEmbed.html);
       });
     });
   </script>
