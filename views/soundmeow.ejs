@@ -67,7 +67,8 @@
           console.log(query);
           SC.get('/tracks',{genres:query}).then(function(tracks){
               var array = [];
-              for (track in tracks){
+              for (var i = 0; i<tracks.length; i++){
+                var track = tracks[i]
                 console.log(track);
                 array.push({id:track.id});
               }
