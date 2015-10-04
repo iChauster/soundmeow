@@ -102,11 +102,11 @@ app.get('/search/query', function(req,res){
           array.push({id:track.id});
         }
         console.log(array);
-        SC.connect().then(function() {
+        /*SC.connect().then(function() {
           SC.post('/playlists', {
               playlist: { title: query + 'Playlist', tracks: tracks }
           });
-        });
+        });*/
      });
    //should return to home page with the id of the playlist. 
   res.redirect('/');
