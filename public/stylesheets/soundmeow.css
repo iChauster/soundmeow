@@ -21,6 +21,11 @@ body h1{
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+    padding:10px;
+   -webkit-transition: background-color 500ms ease-out 1s;
+    -moz-transition: background-color 500ms ease-out 1s;
+    -o-transition: background-color 500ms ease-out 1s;
+    transition: background-color 500ms ease-out 1s;
 }
 .text-vertical-center{
      display: table-cell;
@@ -37,4 +42,8 @@ body h1{
 }
 #origin{
     padding-bottom:20px;
+}
+.loading{
+    background-color:#58554e;
+    padding:20px;
 }

@@ -28,7 +28,7 @@
    					 <div class="input-group" id = 'origin'>
    					   <input type="text" id ='music_search' class="form-control" placeholder="What do you want to hear?">
     				  <span class="input-group-btn">
-    				    <button class="btn btn-default" type="button">Playlist</button>
+    				    <button class="btn btn-default" type="button" id='makePlaylist'>Playlist</button>
      				 </span>
     				</div><!-- /input-group -->
   				</div><!-- /.col-lg-6 -->
@@ -57,10 +57,14 @@
       console.log('inside',oEmbed);
         $('#mid').append(oEmbed.html);
         $('#meow').contents().last()[0].textContent=oEmbed.title;
+        $('#makePlaylist').onclick = function(){
+          console.log('Making Playlist...');
+          $('#nya').className = 'loading';
+        }
       });
     });
     SC.get('/tracks', {
-      q: 'Porter Robinson'
+      q: 'Sad Machine'
       }).then(function(tracks) {
         console.log(tracks);
     });
