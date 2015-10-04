@@ -68,8 +68,10 @@
           SC.get('/tracks',{genres:query}).then(function(tracks){
               var array = [];
               for (track in tracks){
+                console.log(track);
                 array.push({id:track.id});
               }
+              console.log(array);
               SC.connect().then(function() {
              SC.post('/playlists', {
                  playlist: { title: query + 'Playlist', tracks: tracks }
