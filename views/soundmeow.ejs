@@ -76,7 +76,6 @@
               SC.connect().then(function() {
              SC.post('/playlists', {
                  playlist: { title: query + 'Playlist', tracks: tracks }
-                 console.log(playlist, 'success?');
              });
             });
           });
