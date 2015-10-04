@@ -23,6 +23,13 @@ passport.use(new SoundCloudStrategy({
       uri:'http://soundmeow.herokuapp.com/auth/soundcloud/callback',
       accessToken:accessToken
     });
+    SC.get('/tracks/164497989', function(err, track) {
+  if ( err ) {
+    throw err;
+  } else {
+    console.log('track retrieved:', track);
+  }
+});
       return done(null, profile);
    
   }
@@ -75,6 +82,7 @@ app.get('/auth/soundcloud/callback',
   passport.authenticate('soundcloud', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
+
     res.redirect('/');
   });
 // error handlers
@@ -110,13 +118,7 @@ app.get('/search/query', function(req,res){
   res.redirect('/');
 });
 app.get('/' ,function(req,res,next){
-  SC.get('/tracks/164497989', function(err, track) {
-  if ( err ) {
-    throw err;
-  } else {
-    console.log('track retrieved:', track);
-  }
-});
+
   res.render('soundmeow',{user:req.user, trackNumber:crystal, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
 });
 // production error handler
