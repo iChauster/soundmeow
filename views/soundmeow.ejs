@@ -43,9 +43,12 @@
   <script>
   var trackURL = 'https://soundcloud.com/porter-robinson/sets/worlds';
   var clientID = 'bdada4ec105a7128a8b5f8789074517f';
+  var redirect = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
   var trackNumber = <%=trackNumber%>;
     SC.initialize({
-      client_id:clientID
+      client_id:clientID,
+      redirect_uri: redirect
+
     });
     //SC.stream only works on Safari.
     /*SC.stream('/tracks/' + String(trackNumber)).then(function(player){
@@ -60,6 +63,19 @@
         $('#makePlaylist').click(function(){
           console.log('Making Playlist...');
           $('#nya').attr('id','loading');
+          var query = $('#music_search').val();
+          console.log(query);
+          SC.get('/tracks',{genres:query}).then(function(tracks){
+              var array = [];
+              for (track in tracks){
+                array.push({id:track.id});
+              }
+              SC.connect().then(function() {
+             SC.post('/playlists', {
+                 playlist: { title: query + 'Playlist', tracks: tracks }
+             });
+            });
+          });
         });
       });
     });
