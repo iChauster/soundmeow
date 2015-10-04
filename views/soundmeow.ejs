@@ -40,7 +40,7 @@
   <%if(trackNumber && user){%>
 
   <script>
-  var trackURL = 'https://soundcloud.com/george-and-jonathan/crystal';
+  var trackURL = 'https://soundcloud.com/porter-robinson/sets/worlds';
   var clientID = 'bdada4ec105a7128a8b5f8789074517f';
   var trackNumber = <%=trackNumber%>;
     SC.initialize({
@@ -49,7 +49,7 @@
     /*SC.stream('/tracks/' + String(trackNumber)).then(function(player){
       player.play();
     });*/
-    SC.oEmbed(trackURL, { auto_play: true }).then(function(oEmbed) {
+    SC.oEmbed(trackURL, { auto_play: true, maxwidth : 400}).then(function(oEmbed) {
       console.log(oEmbed);
      $(document).ready(function() {
       console.log('inside',oEmbed);
