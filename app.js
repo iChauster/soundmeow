@@ -7,29 +7,22 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var SC = require('node-soundcloud');
 var SoundCloudStrategy = require('passport-soundcloud').Strategy;
-
+var callback = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var crystal = '145621758';
 passport.use(new SoundCloudStrategy({
     clientID: process.env.SOUNDCLOUD_CLIENT_ID,
     clientSecret: process.env.SOUNDCLOUD_CLIENT_SECRET,
-    callbackURL: "http://soundmeow.herokuapp.com/auth/soundcloud/callback"
+    callbackURL: callback
   },
   function(accessToken, refreshToken, profile, done) {
     SC.init({
       id:process.env.SOUNDCLOUD_CLIENT_ID,
       secret:process.env.SOUNDCLOUD_CLIENT_SECRET,
-      uri:'http://soundmeow.herokuapp.com/auth/soundcloud/callback',
+      uri:callback,
       accessToken:accessToken
     });
-    SC.get('/tracks/164497989', function(err, track) {
-  if ( err ) {
-    throw err;
-  } else {
-    console.log('track retrieved:', track);
-  }
-});
       return done(null, profile);
    
   }
@@ -100,6 +93,7 @@ app.get('/auth/soundcloud/callback',
 }*/
 app.get('/search/query', function(req,res){
     var query = req.query['genre'];
+    console.log(query);
    SC.get('/tracks',{genres:query}).then(function(tracks){
        var array = [];
        for (var i = 0; i<tracks.length; i++){
