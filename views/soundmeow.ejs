@@ -50,8 +50,9 @@
       player.play();
     });*/
     SC.oEmbed(trackURL, { auto_play: true }).then(function(oEmbed) {
-     $( document ).ready(function() {
-      console.log('inside',oEmebed);
+      console.log(oEmbed);
+     $(document).ready(function() {
+      console.log('inside',oEmbed);
         $('.text-vertical-center').append(oEmbed);
       });
     });
