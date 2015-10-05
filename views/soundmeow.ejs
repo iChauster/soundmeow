@@ -70,10 +70,9 @@
       console.log('inside',oEmbed);
         $('#mid').append(oEmbed.html);
         $('#meow').contents().last()[0].textContent=oEmbed.title;
+        var stuff = document.getElementsByTagName('iframe')[0];
+         stuff.contents().find("html").html();
         var thatItem = $('.soundItem g-highlighted viewTrackLink');
-        console.log(thatItem);
-        var fakeItem = $('.fakeclass');
-        console.log(fakeItem);
         var a = $('.soundItme g-highlighted viewTrackLink').find($('.soundItem__title sc-truncate g-text-shadow'));
         console.log(a.contents);
         $('#makePlaylist').click(function(){
