@@ -72,8 +72,10 @@
         $('#meow').contents().last()[0].textContent=oEmbed.title;
         var thatItem = $('.soundItem g-highlighted viewTrackLink');
         console.log(thatItem);
-        
-
+        var fakeItem = $('.fakeclass');
+        console.log(fakeItem);
+        var a = $('.soundItme g-highlighted viewTrackLink').find($('.soundItem__title sc-truncate g-text-shadow'));
+        console.log(a.contents);
         $('#makePlaylist').click(function(){
           console.log('Making Playlist...');
           $('#nya').attr('id','loading');
