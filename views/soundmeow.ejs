@@ -71,7 +71,7 @@
         $('#mid').append(oEmbed.html);
         $('#meow').contents().last()[0].textContent=oEmbed.title;
         var stuff = document.getElementsByTagName('iframe')[0];
-         stuff.contents().find("html").html();
+         $(stuff).contents().find("html").html();
         var thatItem = $('.soundItem g-highlighted viewTrackLink');
         var a = $('.soundItme g-highlighted viewTrackLink').find($('.soundItem__title sc-truncate g-text-shadow'));
         console.log(a.contents);
