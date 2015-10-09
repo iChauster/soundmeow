@@ -112,7 +112,7 @@ app.get('/search/query', function(req,res){
           console.log(main['collection'][0]);
           song1.push.apply(song1,main['collection'][0]['id']);
           console.log(song1);
-          res.render('soundmeow'),{user:req.user, trackNumber:song1, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
+          res.render('soundmeow',{user:req.user, trackNumber:song1, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
         }
       });
    //should return to home page with the id of the playlist. 
