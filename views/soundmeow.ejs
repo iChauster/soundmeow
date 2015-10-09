@@ -64,7 +64,7 @@
     /*SC.stream('/tracks/' + String(trackNumber)).then(function(player){
       player.play();
     });*/
-    SC.oEmbed(trackURL, { auto_play: true, maxwidth : 400}).then(function(oEmbed) {
+    SC.oEmbed(trackNumber, { auto_play: true, maxwidth : 400}).then(function(oEmbed) {
       console.log(oEmbed);
      $(document).ready(function() {
       console.log('inside',oEmbed);
@@ -87,11 +87,7 @@
      
       });
     });
-    SC.get('/tracks', {
-      q: 'Sad Machine'
-      }).then(function(tracks) {
-        console.log(tracks);
-    });
+    
   </script>
   <%}%>
 </html>

@@ -12,8 +12,7 @@ var request = require('request');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 //var mow = require('soundcloud');
-var crystal = '145621758';
-var tracknumber = crystal;
+var tracknumber = '145621758';
 var profileID;
 /*mow.initialize({
   client_id : process.env.SOUNDCLOUD_CLIENT_ID,
@@ -111,7 +110,7 @@ app.get('/search/query', function(req,res){
         if(!error){
           var main = JSON.parse(body);
           console.log(main['collection'][0]);
-          song1.push(song1,main['collection'][0]['id']);
+          song1.push(song1,main['collection'][0]['permalink_url']);
           console.log(song1);
           tracknumber = song1;
           res.redirect('/');
@@ -121,7 +120,7 @@ app.get('/search/query', function(req,res){
    
 });
 app.get('/' ,function(req,res,next){
-
+  console.log(tracknumber);
   res.render('soundmeow',{user:req.user, trackNumber:tracknumber, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
 });
 // production error handler
