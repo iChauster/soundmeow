@@ -109,9 +109,10 @@ app.get('/search/query', function(req,res){
       url: 'https://api-v2.soundcloud.com/search?q='+queryEncoded+')&facet=model&user_id='+profileID+'&limit=10&offset=0&linked_partitioning=1&client_id='+process.env.SOUNDCLOUD_CLIENT_ID+'&app_version=a089efd',
     },
       function(error, response, body) {
+        console.log('request');
         var bod = JSON.parse(body);
         song1.push.apply(song1, bod['collection']);
-      })
+      });
    //should return to home page with the id of the playlist. 
    console.log(song1);
   res.redirect('/');
