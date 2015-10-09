@@ -108,15 +108,15 @@ app.get('/search/query', function(req,res){
     request('https://api-v2.soundcloud.com/search?q='+queryEncoded+'&facet=model&user_id='+profileID+'&limit=10&offset=0&linked_partitioning=1&client_id='+process.env.SOUNDCLOUD_CLIENT_ID+'&app_version=a089efd', 
       function (error,response,body){
         if(!error){
-          console.log(body);
           var main = JSON.parse(body);
           console.log(main['collection'][0]);
-          song1.push.apply(song1,main['collection'][0]);
+          song1.push.apply(song1,main['collection'][0]['id']);
+          console.log(song1);
+          res.render('soundmeow'),{user:req.user, trackNumber:song1, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
         }
       });
    //should return to home page with the id of the playlist. 
-   console.log(song1);
-  res.redirect('/');
+   
 });
 app.get('/' ,function(req,res,next){
 
