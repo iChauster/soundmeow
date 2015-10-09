@@ -8,6 +8,7 @@ var passport = require('passport');
 var SC = require('node-soundcloud');
 var SoundCloudStrategy = require('passport-soundcloud').Strategy;
 var callback = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
+var request = require('request');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 //var mow = require('soundcloud');
@@ -22,6 +23,7 @@ passport.use(new SoundCloudStrategy({
     callbackURL: callback
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
     SC.init({
       id:process.env.SOUNDCLOUD_CLIENT_ID,
       secret:process.env.SOUNDCLOUD_CLIENT_SECRET,
@@ -97,30 +99,19 @@ app.get('/auth/soundcloud/callback',
   });
 }*/
 app.get('/search/query', function(req,res){
+    var song1 = [];
     var query = req.query['genre'];
     console.log(query);
-    SC.get('/tracks/164497989', function(err, track) {
-  if ( err ) {
-    throw err;
-  } else {
-    console.log('track retrieved:', track);
-  }
-});
-   SC.get('/tracks',{genres:query},function(tracks){
-       var array = [];
-       for (var i = 0; i<tracks.length; i++){
-          var track = tracks[i]
-          console.log(track);
-          array.push({id:track.id});
-        }
-        console.log(array);
-        /*SC.connect().then(function() {
-          SC.post('/playlists', {
-              playlist: { title: query + 'Playlist', tracks: tracks }
-          });
-        });*/
-     });
+    var queryEncoded = encodeURIComponent(query);
+    request.get({
+      url: 'https://api-v2.soundcloud.com/search?q='+queryEncoded+')&facet=model&user_id=527771-930522-267080-610768&limit=10&offset=0&linked_partitioning=1&client_id='+process.env.SOUNDCLOUD_CLIENT_ID+'&app_version=a089efd',
+    },
+      function(error, response, body) {
+        var bod = JSON.parse(body);
+        song1.push.apply(song1, bod['collection']);
+      })
    //should return to home page with the id of the playlist. 
+   console.log(song1);
   res.redirect('/');
 });
 app.get('/' ,function(req,res,next){
