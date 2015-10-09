@@ -13,6 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 //var mow = require('soundcloud');
 var crystal = '145621758';
+var tracknumber = crystal;
 var profileID;
 /*mow.initialize({
   client_id : process.env.SOUNDCLOUD_CLIENT_ID,
@@ -112,7 +113,8 @@ app.get('/search/query', function(req,res){
           console.log(main['collection'][0]);
           song1.push(song1,main['collection'][0]['id']);
           console.log(song1);
-          res.render('soundmeow',{user:req.user, trackNumber:song1, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
+          tracknumber = song1;
+          res.redirect('/');
         }
       });
    //should return to home page with the id of the playlist. 
@@ -120,7 +122,7 @@ app.get('/search/query', function(req,res){
 });
 app.get('/' ,function(req,res,next){
 
-  res.render('soundmeow',{user:req.user, trackNumber:crystal, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
+  res.render('soundmeow',{user:req.user, trackNumber:tracknumber, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
 });
 // production error handler
 // no stacktraces leaked to user
