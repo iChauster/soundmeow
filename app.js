@@ -13,6 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 //var mow = require('soundcloud');
 var crystal = '145621758';
+var profileID;
 /*mow.initialize({
   client_id : process.env.SOUNDCLOUD_CLIENT_ID,
   redirect_uri : callback
@@ -24,6 +25,7 @@ passport.use(new SoundCloudStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log(profile);
+    profileID = profile.id;
     SC.init({
       id:process.env.SOUNDCLOUD_CLIENT_ID,
       secret:process.env.SOUNDCLOUD_CLIENT_SECRET,
@@ -104,7 +106,7 @@ app.get('/search/query', function(req,res){
     console.log(query);
     var queryEncoded = encodeURIComponent(query);
     request.get({
-      url: 'https://api-v2.soundcloud.com/search?q='+queryEncoded+')&facet=model&user_id=527771-930522-267080-610768&limit=10&offset=0&linked_partitioning=1&client_id='+process.env.SOUNDCLOUD_CLIENT_ID+'&app_version=a089efd',
+      url: 'https://api-v2.soundcloud.com/search?q='+queryEncoded+')&facet=model&user_id='+profileID+'&limit=10&offset=0&linked_partitioning=1&client_id='+process.env.SOUNDCLOUD_CLIENT_ID+'&app_version=a089efd',
     },
       function(error, response, body) {
         var bod = JSON.parse(body);
