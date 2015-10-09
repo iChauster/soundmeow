@@ -112,7 +112,7 @@ app.get('/search/query', function(req,res){
           if (!main['collection'][0]){
             for (tracks in main['collection']){
               if (main['collection'][tracks]){
-
+                console.log(main['collection'][tracks]['embeddable_by'])
                 song1 = main['collection'][tracks]['permalink_url'];
                 break;
               }
