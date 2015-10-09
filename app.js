@@ -110,7 +110,8 @@ app.get('/search/query', function(req,res){
         if(!error){
           console.log(body);
           var main = JSON.parse(body);
-          song1.push.apply(song1,bod['collection']);
+          console.log(main['colletion'][0]);
+          song1.push.apply(song1,main['collection'][0]);
         }
       });
    //should return to home page with the id of the playlist. 
