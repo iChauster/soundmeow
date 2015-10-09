@@ -112,7 +112,8 @@ app.get('/search/query', function(req,res){
           console.log(main['collection'][0]);
           song1 = main['collection'][0]['permalink_url'];
           console.log(song1);
-          tracknumber = song1;
+          var song = "'" + song1 + "'";
+          tracknumber = song;
           res.redirect('/');
         }
       });
