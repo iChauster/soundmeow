@@ -110,7 +110,7 @@ app.get('/search/query', function(req,res){
         if(!error){
           var main = JSON.parse(body);
           console.log(main['collection'][0]);
-          song1 = main['collection'][0]['permalink_url']);
+          song1 = main['collection'][0]['permalink_url'];
           console.log(song1);
           tracknumber = song1;
           res.redirect('/');
