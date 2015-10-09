@@ -54,7 +54,7 @@
   var trackURL = 'https://soundcloud.com/porter-robinson/sets/worlds';
   var clientID = 'bdada4ec105a7128a8b5f8789074517f';
   var redirect = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
-  var trackNumber = <%=trackNumber%>;
+  var trackNumber = <%-trackNumber%>;
     SC.initialize({
       client_id:clientID,
       redirect_uri: redirect
