@@ -109,11 +109,24 @@ app.get('/search/query', function(req,res){
       function (error,response,body){
         if(!error){
           var main = JSON.parse(body);
+          if (!main['collection'][0]){
+            for (tracks in main['collection']){
+              if (main['collection'][tracks]){
+                song1 = main['collection'][tracks];
+                break;
+              }
+            }
+          }else{          
+            song1 = main['collection'][0]['permalink_url'];
+          }
           console.log(main['collection'][0]);
-          song1 = main['collection'][0]['permalink_url'];
           console.log(song1);
           var song = "'" + song1 + "'";
-          tracknumber = song;
+          if(song == null){
+            console.log('error, song is nil');
+          }else {
+            tracknumber = song;
+          }
           res.redirect('/');
         }
       });
