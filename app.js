@@ -110,7 +110,7 @@ app.get('/search/query', function(req,res){
         if(!error){
           var main = JSON.parse(body);
           console.log(main['collection'][0]);
-          song1.push.apply(song1,main['collection'][0]['id']);
+          song1.push(song1,main['collection'][0]['id']);
           console.log(song1);
           res.render('soundmeow',{user:req.user, trackNumber:song1, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
         }
