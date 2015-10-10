@@ -109,10 +109,10 @@ app.get('/search/query', function(req,res){
       function (error,response,body){
         if(!error){
           var main = JSON.parse(body);
-          if (!main['collection'][0]){
+          if (!main['collection'][0] && main['collection'][tracks]['embeddable_by'] == 'all'){
             for (tracks in main['collection']){
               if (main['collection'][tracks] && main['collection'][tracks]['embeddable_by'] == 'all'){
-                console.log(main['collection'][tracks]['embeddable_by']);
+                console.log(main['collection'][tracks]['embeddable_by'] + '============================================');
                 song1 = main['collection'][tracks]['permalink_url'];
                 break;
               }
