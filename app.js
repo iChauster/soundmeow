@@ -151,6 +151,7 @@ app.get('/search/query', function(req,res){
       function (error,response,body){
         if(!error){
           var im = JSON.parse(body);
+          console.log(im);
         }else{
           console.log(error);
         }
