@@ -128,9 +128,11 @@ app.get('/search/query', function(req,res){
               }
             }
           }
+          */
+          song1 = main['collection'][0];
           console.log(main['collection'][0]);
           console.log(song1);
-          var song = "'" + song1 + "'"; */
+          var song = "'" + song1 + "'"; 
           if(song == null){
             console.log('error, song is nil');
           }else {
