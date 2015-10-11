@@ -134,7 +134,15 @@ app.get('/search/query', function(req,res){
                 song1 = main['collection'][0]['permalink_url'];
             }else if (main['collection'][0]['kind'] == 'track'){
               if(main['collection'][0]['embeddable_by'] == 'all'){
-                song1 = main['collection'][tracks]['permalink_url'];
+                song1 = main['collection'][0]['permalink_url'];
+                break;
+              }else{
+                for(tracks in main['collection']){
+                  if(main['collection'][tracks] && main['collection'][tracks]['embeddable_by'] == 'all'){
+                    song1 = main['collection'][tracks]['permalink_url'];
+                    break;
+                  }
+                }
               }
             }
           }else{
