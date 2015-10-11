@@ -105,6 +105,7 @@ app.get('/search/query', function(req,res){
     var query = req.query['genre'];
     console.log(query);
     var queryEncoded = encodeURIComponent(query);
+    console.log('https://api-v2.soundcloud.com/search?q='+queryEncoded+'&facet=model&user_id='+profileID+'&limit=10&offset=0&linked_partitioning=1&client_id='+process.env.SOUNDCLOUD_CLIENT_ID+'&app_version=a089efd');
     request('https://api-v2.soundcloud.com/search?q='+queryEncoded+'&facet=model&user_id='+profileID+'&limit=10&offset=0&linked_partitioning=1&client_id='+process.env.SOUNDCLOUD_CLIENT_ID+'&app_version=a089efd', 
       function (error,response,body){
         if(!error){
