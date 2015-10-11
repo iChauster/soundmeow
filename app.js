@@ -144,7 +144,15 @@ app.get('/search/query', function(req,res){
           }else {
             tracknumber = song;
           }
-          res.redirect('/');
+          //res.redirect('/');
+        }
+      });
+    request('https://www.googleapis.com/customsearch/v1?q=' + query + '&searchType=image&key=AIzaSyB839WZj24bgbM8cz-U0hz2I8VnwdW3FtQ',
+      function (error,response,body){
+        if(!error){
+          var im = JSON.parse(body);
+        }else{
+          console.log(error);
         }
       });
    //should return to home page with the id of the playlist. 
