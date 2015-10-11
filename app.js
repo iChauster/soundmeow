@@ -129,7 +129,7 @@ app.get('/search/query', function(req,res){
             }
           }
           */
-          song1 = main['collection'][0];
+          song1 = main['collection'][0]['permalink_url'];
           console.log(main['collection'][0]);
           console.log(song1);
           var song = "'" + song1 + "'"; 
