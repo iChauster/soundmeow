@@ -16,3 +16,7 @@ This is a NodeJS Project focused on:
 Here's the Heroku site. 
 
 ( http://soundmeow.herokuapp.com )
+
+The site allows you input a song name, an artist's name, and will return the song if available, or an artist's tracks if available.
+
+We're currently working on looking at user tracks to find the genre they like and creating a playlist based on what they like. We're also looking to create playlists based on their searches. The iOS app/Android app will be in motion soon. 
