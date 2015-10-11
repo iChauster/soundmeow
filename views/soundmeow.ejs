@@ -64,6 +64,7 @@
     /*SC.stream('/tracks/' + String(trackNumber)).then(function(player){
       player.play();
     });*/
+  if (trackNumber){
     SC.oEmbed(trackNumber, { auto_play: true, maxwidth : 400}).then(function(oEmbed) {
       console.log(oEmbed);
      $(document).ready(function() {
@@ -87,6 +88,7 @@
      
       });
     });
+  }
     
   </script>
   <%}%>
