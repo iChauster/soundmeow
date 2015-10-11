@@ -109,7 +109,7 @@ app.get('/search/query', function(req,res){
       function (error,response,body){
         if(!error){
           var main = JSON.parse(body);
-          if (!main['collection'][0]){
+          /*if (!main['collection'][0]){
             for (tracks in main['collection']){
               if (main['collection'][tracks] && main['collection'][tracks]['embeddable_by'] == 'all'){
                 console.log(main['collection'][tracks]['embeddable_by'] + '============================================');
@@ -130,7 +130,7 @@ app.get('/search/query', function(req,res){
           }
           console.log(main['collection'][0]);
           console.log(song1);
-          var song = "'" + song1 + "'";
+          var song = "'" + song1 + "'"; */
           if(song == null){
             console.log('error, song is nil');
           }else {
