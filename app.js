@@ -144,10 +144,10 @@ app.get('/search/query', function(req,res){
           }else {
             tracknumber = song;
           }
-          //res.redirect('/');
+          res.redirect('/');
         }
       });
-    request('https://www.googleapis.com/customsearch/v1?q=' + query + '&searchType=image&key=AIzaSyB839WZj24bgbM8cz-U0hz2I8VnwdW3FtQ',
+    request('https://www.googleapis.com/customsearch/v1?q=' + query + '&searchType=image&key=AIzaSyDt1uGJApTw0m78fh4wJ8nhUgqmhpIzO6U&cx=004684823068707128893:2sne8uymz30',
       function (error,response,body){
         if(!error){
           var im = JSON.parse(body);
