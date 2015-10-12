@@ -139,6 +139,7 @@ app.get('/search/query', function(req,res){
           console.log(main['collection'][0]);
           console.log(song1);
           if(main['collection'] == null){
+            song1 = null;
             trackNumber = null;
           }
           var song = "'" + song1 + "'"; 
