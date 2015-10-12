@@ -102,6 +102,8 @@ app.get('/auth/soundcloud/callback',
   });
 }*/
 app.get('/search/query', function(req,res){
+    var green = false;
+    var blue = false;
     var song1;
     var query = req.query['genre'];
     console.log(query);
@@ -144,8 +146,11 @@ app.get('/search/query', function(req,res){
             console.log('error, song is nil');
           }else {
             tracknumber = song;
+            green = true;
           }
-          res.redirect('/');
+          if(blue == true){
+            res.redirect('/');
+          }
         }
       });
     request('https://www.googleapis.com/customsearch/v1?q=' + query + '&searchType=image&key=AIzaSyDt1uGJApTw0m78fh4wJ8nhUgqmhpIzO6U&cx=004684823068707128893:2sne8uymz30',
@@ -157,6 +162,10 @@ app.get('/search/query', function(req,res){
           if(items[0]){
             var good = '"' + items[0]['link']+ '"';
             image = good;
+            blue = true;
+            if(green == true){
+              res.redirect('/');
+            }
           }
         }else{
           console.log(error);
