@@ -56,7 +56,7 @@
   var clientID = 'bdada4ec105a7128a8b5f8789074517f';
   var redirect = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
   var trackNumber = <%-trackNumber%>;
-  <% if (artwork){ %>
+  <% if (artwork != ''){ %>
     var image = <%-artwork%>;
   <%}else{%>
     var image = null;
