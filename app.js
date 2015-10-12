@@ -155,7 +155,8 @@ app.get('/search/query', function(req,res){
           console.log(im);
           var items = im['items'];
           if(items[0]){
-            image = items[0]['link'];
+            var good = '"' + items[0]['link']+ '"';
+            image = good;
           }
         }else{
           console.log(error);
