@@ -21,7 +21,6 @@ body h1{
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-    padding:10px;
    -webkit-transition: background-color 500ms ease-out 1s;
     -moz-transition: background-color 500ms ease-out 1s;
     -o-transition: background-color 500ms ease-out 1s;

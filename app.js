@@ -13,6 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 //var mow = require('soundcloud');
 var tracknumber = '"https://soundcloud.com/george-and-jonathan/crystal"';
+var image = '';
 var profileID;
 /*mow.initialize({
   client_id : process.env.SOUNDCLOUD_CLIENT_ID,
@@ -152,6 +153,10 @@ app.get('/search/query', function(req,res){
         if(!error){
           var im = JSON.parse(body);
           console.log(im);
+          var items = im['items'];
+          if(items[0]){
+            image = items[0]['link'];
+          }
         }else{
           console.log(error);
         }
@@ -161,7 +166,8 @@ app.get('/search/query', function(req,res){
 });
 app.get('/' ,function(req,res,next){
   console.log(tracknumber);
-  res.render('soundmeow',{user:req.user, trackNumber:tracknumber, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
+  console.log(image);
+  res.render('soundmeow',{user:req.user, trackNumber:tracknumber, artwork:image, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
 });
 // production error handler
 // no stacktraces leaked to user

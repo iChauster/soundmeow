@@ -37,7 +37,7 @@
 			</div><!-- /.row -->
 		</header>
 	</body>
-  
+
   <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
   <%if(trackNumber && user){%>
 
@@ -56,6 +56,7 @@
   var clientID = 'bdada4ec105a7128a8b5f8789074517f';
   var redirect = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
   var trackNumber = <%-trackNumber%>;
+  var image = <%-image%>;
     SC.initialize({
       client_id:clientID,
       redirect_uri: redirect
@@ -84,8 +85,10 @@
           console.log(query);
           var lo = insertParam('genre', query, 'search/query');
           window.location.href = 'http://soundmeow.herokuapp.com/' + lo;
-         
         });
+       if(image){
+        $('#nya').css('background-image','url(' + image + ') no-repeat center center scroll');
+       } 
      
       });
     });
