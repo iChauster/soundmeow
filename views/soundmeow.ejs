@@ -131,12 +131,14 @@
           console.log(image.length);
           console.log(image);
           var zero = 0;
-          setInterval(function(){
+          var imageAction = function(){
             zero = ++zero % image.length;
             console.log(zero);
             $('.header').css('background-image','url(' + image[zero] + ')');
+          }
+          imageAction();
+          setInterval(imageAction, 5000);
 
-          }, 5000);
         }
        /*if(image){
         $('.header').css('background-image','url(' + image[0] + ')');
