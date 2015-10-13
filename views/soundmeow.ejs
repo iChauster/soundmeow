@@ -128,25 +128,13 @@
           window.location.href = 'http://soundmeow.herokuapp.com/' + lo;
         });
         if(image){
+          console.log(image.length);
+          console.log(image);
           var zero = 0;
           setInterval(function(){
-            zero == ++zero % image.length;
-            $('.header').css('background','url(' + image[zero] + ') no-repeat center center scroll');
-            $('.header').css('display','table');
-            $('.header').css('position','relative');
-            $('.header').css('width','100%');
-            $('.header').css('height','100%');
-            $('.header').css('background-color','#FF6600');
-            $('.header').css('-webkit-background-size','cover');
-            $('.header').css('-moz-background-size','cover');
-            $('.header').css('background-size','cover');
-            $('.header').css(' -o-background-size','cover');
-            $('.header').css('-webkit-transition','background-color 500ms ease-out 1s');
-            $('.header').css('-moz-transition','background-color 500ms ease-out 1s');
-            $('.header').css('-o-transition','background-color 500ms ease-out 1s');
-            $('.header').css('transition','background-color 500ms ease-out 1s');
-
-
+            zero = ++zero % image.length;
+            console.log(zero);
+            $('.header').css('background','url(' + image[zero] + ')');
 
           }, 5000);
         }

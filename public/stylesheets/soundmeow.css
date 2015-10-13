@@ -25,6 +25,11 @@ body h1{
     -moz-transition: background-color 500ms ease-out 1s;
     -o-transition: background-color 500ms ease-out 1s;
     transition: background-color 500ms ease-out 1s;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: scroll;
 }
 .text-vertical-center{
      display: table-cell;
