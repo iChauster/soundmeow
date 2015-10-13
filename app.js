@@ -209,10 +209,11 @@ app.get('/' ,function(req,res,next){
   res.render('soundmeow',{user:req.user, trackNumber:tracknumber, artwork:image, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
   image = [];
   if(profileID){
-    reqeust('https://api-v2.soundcloud.com/profile/soundcloud:users:'+profileID+'?limit=10&offset=0&linked_partitioning=1&client_id='+process.env.SOUNDCLOUD_CLIENT_ID'&app_version=9966715',
+    reqeust('https://api-v2.soundcloud.com/profile/soundcloud:users:'+profileID+'?limit=10&offset=0&linked_partitioning=1&client_id='+process.env.SOUNDCLOUD_CLIENT_ID+'&app_version=9966715',
       function (error,response,body){
         if(!error){
-
+          var ate = JSON.parse(body);
+          console.log(ate);
         }else{
           console.log(error);
         }
