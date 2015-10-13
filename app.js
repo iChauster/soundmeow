@@ -144,7 +144,7 @@ app.get('/search/query', function(req,res){
             trackNumber = null;
           }
           var song = "'" + song1 + "'"; 
-          if(song == null || song == 'undefined'){
+          if(song1 == null || song1 == 'undefined'){
             console.log('error, song is nil');
           }else {
             tracknumber = song;
