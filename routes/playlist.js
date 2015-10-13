@@ -169,4 +169,4 @@ function longest(song1, song2){
         })
   playlistOps()
 })
-module.exports = app;
+module.exports.app = app;
