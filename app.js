@@ -200,6 +200,7 @@ app.get('/' ,function(req,res,next){
   console.log(tracknumber);
   console.log(image);
   res.render('soundmeow',{user:req.user, trackNumber:tracknumber, artwork:image, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
+  image = [];
 });
 // production error handler
 // no stacktraces leaked to user
