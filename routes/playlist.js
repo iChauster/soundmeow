@@ -10,15 +10,14 @@ app.get('/find/:paramID1/:paramID2', function (req, res) {
   toCheckAgainst = null,
   //Defining the array to contain the results
   playlistsContainingBoth = [];
-​
   function playlistOps() {
     setTimeout(function(){longest(song1,song2);},6000)
     setTimeout(function(){containingBoth(toCheck,toCheckAgainst);},6500)
     setTimeout(function(){res.json(200, {data: playlistsContainingBoth});},8000)
   }
-​
+
   function containingBoth(toCheck, toCheckAgainst){
-​
+
        var values = {};
        var i, current;
        for (i = 0; i < toCheckAgainst.length; i++) {
@@ -33,8 +32,8 @@ app.get('/find/:paramID1/:paramID2', function (req, res) {
        }
          console.log(playlistsContainingBoth);
    }
-​
-​
+
+
   //Logic to check which collection of playlists is longer
 function longest(song1, song2){
   if (song1.length > song2.length) {
@@ -43,7 +42,7 @@ function longest(song1, song2){
       console.log(toCheck.length);
       console.log(toCheckAgainst.length);
     }
-​
+
   else {
       toCheck = song2
       toCheckAgainst = song1
@@ -51,9 +50,9 @@ function longest(song1, song2){
       console.log(toCheckAgainst.length);
       }
   }
-​
+
   console.log(id1,id2);
-​
+
 //Song1 Calls
     request.get({
       url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
@@ -111,7 +110,6 @@ function longest(song1, song2){
             var bod = JSON.parse(body);
             song1.push.apply(song1, bod['collection']);
           }),
-​
 //Song2 Calls
       request.get({
         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
@@ -169,7 +167,6 @@ function longest(song1, song2){
           var bod = JSON.parse(body);
           song2.push.apply(song2, bod['collection']);
         })
-​
   playlistOps()
 })
 ​module.exports.app = app;
