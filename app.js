@@ -180,7 +180,8 @@ app.get('/search/query', function(req,res){
           console.log(mi);
           var item = mi['data'];
           if(item[0]){
-            var great = '"' + item[0]['images']['downsized_large']['url'] + '"';
+            //var great = '"' + item[0]['images']['downsized_large']['url'] + '"';
+            var great = '"' + item[0]['embed_url'] + '"';
             console.log(great);
             image.push(great);
             red = true;
