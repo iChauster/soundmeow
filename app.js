@@ -189,6 +189,11 @@ app.get('/search/query', function(req,res){
               res.redirect('/');
             }
 
+          }else{
+            red = true;
+            if(blue == true && green == true){
+              res.redirect('/');
+            }
           }
         }else{
           console.log(error);
