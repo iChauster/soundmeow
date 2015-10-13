@@ -11,6 +11,7 @@ var callback = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
 var request = require('request');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var play = require('./routes/playlist')
 //var mow = require('soundcloud');
 var tracknumber = '"https://soundcloud.com/george-and-jonathan/crystal"';
 var image = [];
@@ -207,6 +208,16 @@ app.get('/' ,function(req,res,next){
   console.log(image);
   res.render('soundmeow',{user:req.user, trackNumber:tracknumber, artwork:image, clientID:process.env.SOUNDCLOUD_CLIENT_ID});
   image = [];
+  if(profileID){
+    reqeust('https://api-v2.soundcloud.com/profile/soundcloud:users:'+profileID+'?limit=10&offset=0&linked_partitioning=1&client_id='+process.env.SOUNDCLOUD_CLIENT_ID'&app_version=9966715',
+      function (error,response,body){
+        if(!error){
+
+        }else{
+          console.log(error);
+        }
+      });
+  }
 });
 // production error handler
 // no stacktraces leaked to user
