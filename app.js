@@ -101,6 +101,7 @@ app.get('/auth/soundcloud/callback',
     });
   });
 }*/
+//will query google custom search, soundcloud, and the giphy api for images, music, and gifs respectively.
 app.get('/search/query', function(req,res){
     var green = false;
     var blue = false;
