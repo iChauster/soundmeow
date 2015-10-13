@@ -13,7 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 //var mow = require('soundcloud');
 var tracknumber = '"https://soundcloud.com/george-and-jonathan/crystal"';
-var image = '';
+var image = [];
 var profileID;
 /*mow.initialize({
   client_id : process.env.SOUNDCLOUD_CLIENT_ID,
@@ -104,6 +104,7 @@ app.get('/auth/soundcloud/callback',
 app.get('/search/query', function(req,res){
     var green = false;
     var blue = false;
+    var red = false;
     var song1;
     var query = req.query['genre'];
     console.log(query);
@@ -149,7 +150,7 @@ app.get('/search/query', function(req,res){
             tracknumber = song;
             green = true;
           }
-          if(blue == true){
+          if(blue == true && red == true){
             res.redirect('/');
           }
         }
@@ -162,11 +163,31 @@ app.get('/search/query', function(req,res){
           var items = im['items'];
           if(items[0]){
             var good = '"' + items[0]['link']+ '"';
-            image = good;
+            image.push(good);
             blue = true;
-            if(green == true){
+            if(green == true && red == true){
               res.redirect('/');
             }
+          }
+        }else{
+          console.log(error);
+        }
+      });
+    request('http://api.giphy.com/v1/gifs/search?q='+ query + '&api_key=dc6zaTOxFJmzC',
+      function (error,response,body){
+        if(!error){
+          var mi = JSON.parse(body);
+          console.log(mi);
+          var item = mi['data'];
+          if(item[0]){
+            var great = '"' + item[0]['url'] + '"';
+            console.log(great);
+            image.push(great);
+            red = true;
+            if(blue == true && green == true){
+              res.redirect('/');
+            }
+
           }
         }else{
           console.log(error);

@@ -41,12 +41,17 @@
       <script type="text/javascript">
     <!--//--><![CDATA[//><!--
       var images = new Array()
+
       function preloader() {
         if (document.images) {
-          var img1 = new Image();
-         
-
-          img1.src = <%-artwork-%>;
+          var urls = <%-artwork%>;
+          var other = <%artwork%>;
+          for (images in artwork){
+            var img1 = new Image();
+            img1.src = artwork[images];
+          }
+          /*var img1 = new Image();
+          img1.src = <%-artwork-%>; */
           
 
         }
@@ -123,9 +128,16 @@
           var lo = insertParam('genre', query, 'search/query');
           window.location.href = 'http://soundmeow.herokuapp.com/' + lo;
         });
-       if(image){
-        $('.header').css('background-image','url(' + image + ')');
-       } 
+        if(image){
+          var zero = 0;
+          setInterval(function(){
+            zero == ++zero % image.length;
+            $('.header').css('background-image','url(' + image[zero] + ')');
+          }, 5000);
+        }
+       /*if(image){
+        $('.header').css('background-image','url(' + image[0] + ')');
+       } */
      
       });
     });
