@@ -45,7 +45,7 @@
       function preloader() {
         if (document.images) {
           var urls = [<%-artwork%>];
-          for (images in artwork){
+          for (images in urls){
             var img1 = new Image();
             img1.src = artwork[images];
           }
