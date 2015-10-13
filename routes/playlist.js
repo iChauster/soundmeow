@@ -1,7 +1,13 @@
+var express =        require('express'),
+    server =         express(),
+    request =        require('request');
+​
+server.use(express.static("public"));
+var PORT = process.env.PORT || 1337;
 
 // FIND
-app.get('/find/:paramID1/:paramID2', function (req, res) {
-​ console.log('finding playlist ==========================');
+server.get('/find/:paramID1/:paramID2', function (req, res) {
+​
   var id1 = req.params.paramID1,
   id2 = req.params.paramID2,
   song1 = [],
@@ -172,4 +178,10 @@ function longest(song1, song2){
 ​
   playlistOps()
 })
+​
+server.listen(PORT, function() {
+​
+console.log("1337");
+​
+  });
 ​
