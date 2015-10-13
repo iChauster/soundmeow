@@ -11,7 +11,6 @@ var callback = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
 var request = require('request');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var play = require('./routes/playlist')(app);
 //var mow = require('soundcloud');
 var tracknumber = '"https://soundcloud.com/george-and-jonathan/crystal"';
 var image = [];
@@ -47,6 +46,7 @@ passport.deserializeUser(function(obj, done) {
 });
 var app = express();
 
+
 /*https://soundcloud.com/connect end user auth
 https://api.soundcloud.com/oauth2/token token*/
 
@@ -78,6 +78,7 @@ app.use(passport.session());
   err.status = 404;
   next(err);
 });*/
+var play = require('./routes/playlist')(app);
 
 app.get('/auth/soundcloud',
   passport.authenticate('soundcloud'));
