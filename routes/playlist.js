@@ -1,4 +1,4 @@
-
+module.exports = function(app){
 // FIND
 app.get('/find/:paramID1/:paramID2', function (req, res) {
   console.log('inside ====================================');
@@ -169,4 +169,4 @@ function longest(song1, song2){
         })
   playlistOps()
 })
-module.exports.app = app;
+}
