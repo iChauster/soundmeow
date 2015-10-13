@@ -44,8 +44,7 @@
 
       function preloader() {
         if (document.images) {
-          var urls = <%-artwork%>;
-          var other = <%artwork%>;
+          var urls = [<%-artwork%>];
           for (images in artwork){
             var img1 = new Image();
             img1.src = artwork[images];
@@ -95,7 +94,7 @@
   var redirect = 'http://soundmeow.herokuapp.com/auth/soundcloud/callback';
   var trackNumber = <%-trackNumber%>;
   <% if (artwork != ''){ %>
-    var image = <%-artwork%>;
+    var image = [<%-artwork%>];
   <%}else{%>
     var image = null;
   <%}%>
