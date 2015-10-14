@@ -1,4 +1,4 @@
-module.exports = function(app,request){
+module.exports = function(app){
 // FIND
 app.get('/find/:paramID1/:paramID2', function (req, res) {
   console.log('inside ====================================');
