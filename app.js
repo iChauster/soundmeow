@@ -158,6 +158,7 @@ app.get('/search/query', function(req,res){
           }
         }
       });
+  //querying google search. Should only return one result ( top result : subject to change)
     request('https://www.googleapis.com/customsearch/v1?q=' + query + '&searchType=image&key=AIzaSyDt1uGJApTw0m78fh4wJ8nhUgqmhpIzO6U&cx=004684823068707128893:2sne8uymz30',
       function (error,response,body){
         if(!error){
@@ -176,6 +177,7 @@ app.get('/search/query', function(req,res){
           console.log(error);
         }
       });
+    //querying giphy, Should return one result if any ( top result : either null or a .gif url);
     request('http://api.giphy.com/v1/gifs/search?q='+ query + '&api_key=dc6zaTOxFJmzC',
       function (error,response,body){
         if(!error){
