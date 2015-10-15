@@ -165,14 +165,22 @@ app.get('/search/query', function(req,res){
           var im = JSON.parse(body);
           console.log(im);
           var items = im['items'];
-          if(items[0]){
-            var good = '"' + items[0]['link']+ '"';
-            image.push(good);
+          for(item in items){
+            if (items[item]){
+              var good = '"' + items[item]['link'] + '"';
+              image.push(good);
+            }
+            if(item == 2){
+              break;
+            }else{
+              continue;
+            }
+          }
             blue = true;
             if(green == true && red == true){
               res.redirect('/');
             }
-          }
+          
         }else{
           console.log(error);
         }
@@ -185,10 +193,19 @@ app.get('/search/query', function(req,res){
           console.log(mi);
           var item = mi['data'];
           if(item[0]){
-            var great = '"' + item[0]['images']['downsized_large']['url'] + '"';
-            console.log(great);
-            image.push(great);
+            for (items in item){
+              if(item[items]){
+                var great = '"' + item[items]['images']['downsized_large']['url'] + '"';
+                image.push(great);
+              }
+              if(items == 2){
+                break;
+              }else{
+                continue;
+              }
+            }
             red = true;
+            
             if(blue == true && green == true){
               res.redirect('/');
             }
