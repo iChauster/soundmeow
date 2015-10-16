@@ -51,3 +51,8 @@ body h1{
     background-color:#58554e;
     padding:20px;
 }
+#gone{
+    position:absolute;
+    bottom:0;
+    right:0;
+}
