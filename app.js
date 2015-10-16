@@ -78,7 +78,7 @@ app.use(passport.session());
   err.status = 404;
   next(err);
 });*/
-var play = require('./routes/playlist')(app);
+var play = require('./routes/playlist')(app,request);
 
 app.get('/auth/soundcloud',
   passport.authenticate('soundcloud'));
